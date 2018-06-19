@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRules;
 use Illuminate\Support\Facades\DB;//或者 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
 class ValidateController extends Controller
@@ -34,6 +35,7 @@ class ValidateController extends Controller
 //        echo 'ok';
 //    }
 
+    //使用验证类
     public function post(UserRules $request){
         echo 'ok';
     }

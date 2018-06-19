@@ -26,7 +26,7 @@ class UserRules extends FormRequest
     {
         return [
             'name'=>'required|max:10',
-            'pass'=>'required|unique:user'
+            'pass'=>'required|unique:user',
         ];
     }
 
@@ -34,9 +34,12 @@ class UserRules extends FormRequest
     public function messages()
     {
         return[
-          'name.required'=>'name不能为空',
+            //指定某种验证方式,占位符 :attriibute 是指定的该字段
+            'required'=>':attribute 不能为空',
+            //指定某个字段
+//          'name.required'=>'name不能为空',
             'name.max'=>'name最大长度不能超过10',
-            'pass.unique'=>'pass重复'
+            'pass.unique'=>'pass重复',
         ];
     }
 }

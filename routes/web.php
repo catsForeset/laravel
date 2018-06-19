@@ -162,6 +162,7 @@ Route::get('shitu','ViewController@shitu');
 Route::get('index1','ViewController@index1');
 Route::get('buju','ViewController@buju');
 
+
 Route::get('validate','ValidateController@lists');
 Route::post('validate/post','ValidateController@post');
 

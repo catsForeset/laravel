@@ -37,6 +37,10 @@
                 <input type="text" name="tel">
             </p>
             <p>
+                time:
+                <input type="text" name="time">
+            </p>
+            <p>
                 <input type="submit" value="提交">
             </p>
         </form>

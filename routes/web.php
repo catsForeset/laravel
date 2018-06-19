@@ -163,7 +163,7 @@ Route::get('index1','ViewController@index1');
 Route::get('buju','ViewController@buju');
 
 
-
+//表单验证
 Route::get('validate','ValidateController@lists');
 Route::post('validate/post','ValidateController@post');
 

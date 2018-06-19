@@ -25,8 +25,18 @@ class UserRules extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:20',
+            'name'=>'required|max:10',
             'pass'=>'required|unique:user'
+        ];
+    }
+
+    //自定义验证错误信息
+    public function messages()
+    {
+        return[
+          'name.required'=>'name不能为空',
+            'name.max'=>'name最大长度不能超过10',
+            'pass.unique'=>'pass重复'
         ];
     }
 }

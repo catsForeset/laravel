@@ -46,9 +46,19 @@
                 <label class="error_label">{{$errors->first('tel')}}</label>
             </p>
             <p>
+                time_confirmation:
+                <input type="text" name="time_confirmation">
+                <label class="error_label">{{$errors->first('time_confirmation')}}</label>
+            </p>
+            <p>
                 time:
                 <input type="text" name="time">
                 <label class="error_label">{{$errors->first('time')}}</label>
+            </p>
+            <p>
+                end_time:
+                <input type="text" name="end_time">
+                <label class="error_label">{{$errors->first('end_time')}}</label>
             </p>
             <p>
                 <input type="submit" value="提交">

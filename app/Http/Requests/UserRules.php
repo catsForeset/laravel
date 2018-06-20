@@ -25,8 +25,35 @@ class UserRules extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:10',
-            'pass'=>'required|unique:user',
+//            'name'=>'required|max:10',
+//            'pass'=>'required|unique:user',
+
+            //accepted,可接受参数为yes,on,true,1
+//            'name'=>'accepted',
+
+            //after规则，同理beforre
+            //后天的日期,Y-m-d 格式
+//            'time'=>'required|date|after:tomorrow',
+            //时间在time参数之后
+//            'end_time'=>'required|date|after:time',
+            //时间在time之后或者相同
+//            'end_time'=>'required|date|after_or_equal:time',
+
+            //必须是字母（不能是数字或符号）
+//            'name'=>'alpha',
+            //字母和数字和破折号 - 和下划线 _
+//            'name'=>'alpha_dash',
+            //字母和数字
+//            'name'=>'alpha_num',
+
+            //长度范围[1,3]
+//            'name'=>'between:1,3',
+            //可接受参数true,false,1,0,"1","0"
+//            'name'=>'boolean',
+
+            //必须要有一个time_confirmation字段值和它一致，才能验证通过
+            'time'=>'confirmed',
+
         ];
     }
 

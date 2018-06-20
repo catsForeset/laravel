@@ -9,13 +9,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;//或者 use DB;
 
-//此目录已经有一个Controller，此类直接继承该类，不用再use Controller
 class IndexController extends Controller
 {
     public function index(){
-//        echo '后台admin';
         return view('admin.index');
     }
 

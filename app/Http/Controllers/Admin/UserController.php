@@ -9,9 +9,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;//或者 use DB;
 
-//此目录已经有一个Controller，此类直接继承该类，不用再use Controller
 class UserController extends Controller
 {
     public function index(){

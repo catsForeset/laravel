@@ -90,7 +90,7 @@ Route::get('/', function () {
 //Route::get('abc','IndexController@abc')->name('one');//路由别名为one
 //Route::get('def','IndexController@def');
 
-//路由组,命名空间，中间件
+////路由组,命名空间，中间件
 //Route::group(['namespace'=>'Admin'],function (){
 ////    Route::get('admin','Admin\IndexController@index');
 ////    Route::get('admin/user','Admin\UserController@index');
@@ -167,4 +167,12 @@ Route::get('/', function () {
 //Route::get('validate','ValidateController@lists');
 //Route::post('validate/post','ValidateController@post');
 
-Route::get('session','SessionController@index');
+//Route::get('session','SessionController@index');
+
+Route::group(['namespace'=>'Admin'],function (){
+    Route::get('admin/user','UserController@index');
+    Route::get('admin/edit','UserController@edit');
+    Route::get('admin/create','UserController@create');
+});
+//路由同上，php artisan route:list 查看详情
+//Route::resource('admin','Admin\UserController');

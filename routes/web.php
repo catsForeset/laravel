@@ -139,32 +139,32 @@ Route::get('/', function () {
 ////cookie
 //Route::get('cookie','LoginController@cookie');
 
-//响应
-Route::get('view',function(){
-    //返回带参数的视图
-//    return view('view',['name'=>'test']);
-    $array=['a'=>'aaa','b'=>'bbb'];
+////响应
+//Route::get('view',function(){
+//    //返回带参数的视图
+////    return view('view',['name'=>'test']);
+//    $array=['a'=>'aaa','b'=>'bbb'];
+//
+//    return view('view')->with($array);
+////    return $array;
+//    //同上，响应json
+////    return response()->json($array);
+//
+//    //下载文件
+////    return response()->download('C:\Users\Administrator\Pictures\loko.jpg');
+//    //查看文件
+////    return response()->file('C:\Users\Administrator\Pictures\loko.jpg');
+//});
 
-    return view('view')->with($array);
-//    return $array;
-    //同上，响应json
-//    return response()->json($array);
+////视图
+//Route::get('view','ViewController@index');
+//Route::get('shitu','ViewController@shitu');
+//Route::get('index1','ViewController@index1');
+//Route::get('buju','ViewController@buju');
+//
+//
+////表单验证
+//Route::get('validate','ValidateController@lists');
+//Route::post('validate/post','ValidateController@post');
 
-    //下载文件
-//    return response()->download('C:\Users\Administrator\Pictures\loko.jpg');
-    //查看文件
-//    return response()->file('C:\Users\Administrator\Pictures\loko.jpg');
-});
-
-//视图
-Route::get('view','ViewController@index');
-Route::get('shitu','ViewController@shitu');
-Route::get('index1','ViewController@index1');
-Route::get('buju','ViewController@buju');
-
-
-//表单验证
-Route::get('validate','ValidateController@lists');
-Route::post('validate/post','ValidateController@post');
-
-
+Route::get('session','SessionController@index');

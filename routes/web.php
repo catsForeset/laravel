@@ -176,3 +176,5 @@ Route::group(['namespace'=>'Admin'],function (){
 });
 //路由同上，php artisan route:list 查看详情
 //Route::resource('admin','Admin\UserController');
+
+Route::get('sql','SqlController@index');

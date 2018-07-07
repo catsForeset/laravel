@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use app\Models\Order;
 
 class SqlController extends Controller
 {
@@ -124,11 +125,245 @@ class SqlController extends Controller
 
         //orderByRaw()
 //        $data = DB::table('user')
-//            ->orderByRaw('age desc,id desc')
+//            ->orderByRaw('age-id desc')
 //            ->get();
 //        var_dump($data);
 
+
+
+
+
+
+        //joins,返回一个object(Illuminate\Support\Collection)对象
+//        //内链接，inner join,只搜索出满足join()的数据
+//        $user = DB::table('user')
+//            ->join('order','user.id','=','order.user_id')
+//            ->select('user.*','order.orderno','order.price')
+//            ->get();
+//        var_dump($user);
+//
+//        //外链接，left join，搜索满足条件的所有数据
+//        //如果满足leftJoin，则搜索字段数据为搜索结果；如果不满足leftJoin，则搜索字段数据为null
+//        $user = DB::table('user')
+//            ->leftJoin('order','user.id','=','order.user_id')
+//            ->select('user.*','order.orderno','order.price')
+//            ->get();
+//        dd($user);
+
+//        //交叉链接，Cross Join
+//        //交叉连接在第一个表和连接之间生成笛卡尔积
+//        $user = DB::table('user')
+//            ->crossJoin('order')
+//            ->get();
+//        dd($user);
+
+//        //高级join
+//        $data = DB::table('user')
+//            ->join('order',function ($join){
+//                $join->on('user.id','=','order.user_id')->orOn('user.id','>','order.id');
+//            })
+//            ->get();
+//        var_dump($data);
+//        dd($data);
+//
+//        //join+where
+//        $data = DB::table('user')
+//            ->join('order',function ($join){
+//                $join->on('user.id','=','order.user_id')
+//                    ->where('user.id','>',15);
+//            })
+//            ->get();
+//        var_dump($data);
+//        dd($data);
+
+
+
+
+
+        //unions
+        //union,满足其中一个查询即可
+//        $first =  DB::table('order')
+//            ->whereNotNull('created_at');
+//        $order = DB::table('order')
+//            ->whereNull('updated_at')
+//            ->union($first)//unionAll()同
+//            ->get();
+//        var_dump($order);
+//        dd($order);
+
+
+
+
+
+//        //where
+//        $user = DB::table('user')
+//            //'<>'不等于，相当于'!='
+//            //可传递数组到where中
+//            ->where([
+//                ['age','<>',45],
+//                ['id','>=',15]
+//
+//            ])
+//            ->get();
+//        //同上，where联用，同时满足所有where
+//        $user = DB::table('user')
+//            //'<>'不等于，相当于'!='
+//            //可传递数组到where中
+//            ->where('age','<>',45)
+//            ->where('id','>=',15)
+//            ->get();
+//        var_dump($user);
+
+        //orWhere,满足where或orWhere即可
+//        $user = DB::table('user')
+//            ->where('age','<>',45)
+//            ->orWhere('id','>=',15)
+//            ->get();
+
+//        //whereBetween,验证字段的值位于两个值之间(包括)
+//        $user = DB::table('user')
+//            ->whereBetween('age',[30,45])
+//            //whereNotBetween,验证字段的值位于两个值之外(不包括)
+////            ->whereNotBetween('age',[20,30])
+//            ->get();
+//        var_dump($user);
+
+//        //whereIn,验证字段的值在指定的数组内
+//        $user = DB::table('user')
+//            ->whereIn('age',[20,30,45])
+//            //whereNotIn,验证字段的值不在指定的数组内
+////            ->whereNotIn('age',[20,30,45])
+//            ->get();
+//        var_dump($user);
+
+//        //whereNull,验证字段值为null
+//        $user = DB::table('user')
+//            ->whereNull('name')
+//            //whereNotIn,验证字段值不为bull
+////            ->whereNotNull('name')
+//            ->get();
+//        var_dump($user);
+
+        //whereColumn,验证两个字段值是否相等
+//        $order = DB::table('order')
+//            ->whereColumn('created_at','updated_at')
+//            ->get();
+//        $order = DB::table('order')
+//            ->whereColumn([
+//                ['created_at','<','updated_at'],
+//                ['user_id','!=','store_id']
+//            ])
+//            ->get();
+//        var_dump($order);
+
+        //参数分组
+        //等价于SELECT * FROM `user` WHERE `name`='mm' OR(`status`=10 and age>20)
+//        $user = DB::table('user')
+//            ->where('name','=','mm')
+//            ->orWhere(function($query){
+//                //此闭包 接受一个查询构造器实例
+//                $query->where('status',10)->where('age','>',20);
+//            })
+//            ->get();
+//        var_dump($user);
+
         //
-        
+//        $user = DB::table('user')
+//            ->whereExists(function ($query){
+//                $query->select(DB::raw(1))
+//                    ->from('order')
+//                    ->whereRaw('order.user_id = user.id');
+//            })
+//            ->get();
+//        var_dump($user);
+
+//        //latest/oldest，根据最晚/最早时间来查询，默认查询created_at列，可以选择其他列
+//        $user = DB::table('user')->latest()->first();
+//        $user = DB::table('user')->latest('updated_at')->get();
+//        var_dump($user);
+
+        //having,用于限制输出结果，特别是限制group by的输出结果
+//        $user = DB::table('user')
+//            //使用group by的时候不要包括id，因为不能形成组
+//            ->select('name',DB::raw('avg(age) as avg_age'))
+//            ->groupBy('name')
+//            //对查询结果进行限制
+//            ->having('avg_age','>',20)
+//            ->get();
+        //多参数
+//        $user = DB::table('user')
+//            ->select('name','status')
+//            ->groupBy('name','status')
+//            ->having('status','<>',1)
+//            ->get();
+//        var_dump($user);
+
+//        //skip/take,从第4个参数起，（从0开始）获取5个参数。
+//        $user = DB::table('user')->skip(3)->take(5)->get();
+//        //offset/limit,从第1个参数起，（从0开始）获取3个参数。
+//        //数据库原生：select * from user limit 3 offset 0
+//        $user = DB::table('user')->offset(0)->limit(3)->get();
+//        var_dump($user);
+
+        //when
+//        $role = '';//false
+////        $role = 'mm';//true
+//        $user = DB::table('user')
+//            //当when的第一个参数($role)为true的时候，才会执行第二个参数（闭包）的查询
+//            ->when($role,function ($query) use ($role){
+//                return $query->where('name',$role);
+//            })
+//            ->get();
+//        $user = DB::table('user')
+//            ->when($role,function ($query) use ($role){
+//                return $query->where('name',$role);
+//            },function ($query){
+//                //当第一个参数不为true时，执行第三个参数（闭包）的查询
+//                return $query->where('status',10)->orderBy('age','desc');
+//            })
+//            ->get();
+//        var_dump($user);
+
+
+
+
+
+        //insert，返回bool值
+//        $user = DB::table('user')->insert([
+//            ['name'=>'Tom','pass'=>'TomPass','age'=>20],
+//            ['name'=>'ZhangWei','pass'=>'ZhangWeiPass','age'=>23]
+//        ]);
+        //insertGetId如果数据库表有自增id，可以返回id(int)值
+//        $user = DB::table('user')->insertGetId(
+//            ['name'=>'Alex','pass'=>'AlexPass','age'=>50]
+//        );
+//        var_dump($user);
+
+        //update,返回受到影响的行数(int)
+//        $user = DB::table('user')->where('id','11')
+//            ->update(['name'=>'AAA','status'=>10]);
+//        var_dump($user);
+
+        //delete,返回受到影响的行数(int)
+//        $user = DB::table('user')->where('id','13')
+//            ->delete();
+//        //同上，删除id为13的行
+//        $user = DB::table('user')->delete(13);
+//        var_dump($user);
+
+
+
+
+        //increment，decrement.自增/自减,返回受影响的行数
+        //默认自增1
+//        $order = DB::table('order')->increment('price');
+        //设置自增值
+//        $order = DB::table('order')->increment('price',5);
+        //指定要更新的字段
+//        $order = DB::table('order')->increment('price',5,['id'=>2]);
+//
+////        $order = DB::table('order')->decrement('price');
+////        $order = DB::table('order')->decrement('price',5);
+//        var_dump($order);
     }
 }

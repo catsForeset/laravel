@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use app\Models\Order;
+use App\Models\Order;
 
 class SqlController extends Controller
 {
@@ -365,5 +365,23 @@ class SqlController extends Controller
 ////        $order = DB::table('order')->decrement('price');
 ////        $order = DB::table('order')->decrement('price',5);
 //        var_dump($order);
+    }
+
+
+    public function paginate(){
+//        $user = DB::table('user')->paginate(2);
+        //simplePaginate不显示有多少页，只显示上一页/下一页(Previous/Nex)
+//        $user = DB::table('user')->simplePaginate(2);
+//        return view('paginate',['user'=>$user]);
+
+        //同上
+//        $order = Order::paginate(2);
+//        $order = Order::simplePaginate(2);
+//        return view('paginate',['order'=>$order]);
+
+        $order = Order::simplePaginate(2);
+        return $order;
+        return view('paginate',['order'=>$order]);
+
     }
 }

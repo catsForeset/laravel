@@ -5,7 +5,7 @@
  * Date: 2018\7\5 0005
  * Time: 10:06
  */
-namespace app\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

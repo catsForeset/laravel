@@ -179,3 +179,5 @@ Route::group(['namespace'=>'Admin'],function (){
 
 Route::get('sql','SqlController@index');
 Route::get('paginate','SqlController@paginate');
+
+Route::get('redis','RedisController@index');

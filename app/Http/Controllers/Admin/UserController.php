@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -21,7 +23,6 @@ class UserController extends Controller
     public function edit(){
         return view('admin.user.edit');
     }
-
 
     //添加页面
     public function create(){
@@ -41,6 +42,35 @@ class UserController extends Controller
     //删除操作
     public function destroy(){
         return view('admin.user.create');
+    }
+
+    //ORM模型
+    public function user(){
+        $data = User::orderBy('id','desc')->get();
+        //数据库查询返回仓库，下同
+        return view('orm.user',['data'=>$data]);
+//        return view('user',compact('data'));
+//        return view('user')->with('data',$data);
+//        return view('user')->with(['data'=>$data]);
+//        return view('user')->with(compact('data'));
+    }
+
+    //orm模型，create
+    public function ormCreate(Request $request){
+        $user = new User();
+        $id = $request->input('id','');
+        if ($request->isMethod('get')){
+            $detail = $user->find($id);
+            return view('orm.create',compact('detail'));
+        }if ($request->isMethod('post')){
+            $data = $request->all();
+            if (empty($id)){
+                $result = $user->create($data);
+            }else{
+                $result = $user->update($data);
+            }
+            dd($result);
+        }
     }
 
 }

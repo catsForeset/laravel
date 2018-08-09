@@ -23,7 +23,7 @@
             <td>{{$value->name}}</td>
             <td>{{$value->pass}}</td>
             <td>{{$value->status}}</td>
-            <td>{{$value->time}}</td>
+            <td>{{$value->created_at}}</td>
         </tr>
     @endforeach
 </table>

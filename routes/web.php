@@ -181,3 +181,6 @@ Route::get('sql','SqlController@index');
 Route::get('paginate','SqlController@paginate');
 
 Route::get('redis','RedisController@index');
+
+Route::get('orm/user','Admin\UserController@user');
+Route::match(['get','post'],'orm/user/create','Admin\UserController@ormCreate');
